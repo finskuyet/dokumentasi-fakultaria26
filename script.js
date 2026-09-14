@@ -34,7 +34,8 @@ filterButtons.forEach(btn => {
     const category = btn.getAttribute('data-category');
 
     galleryCards.forEach(card => {
-      if (category === 'all' || card.getAttribute('data-category') === category) {
+      const cardCategories = (card.getAttribute('data-category') || '').split(' ');
+      if (category === 'all' || cardCategories.includes(category)) {
         card.classList.remove('hidden');
       } else {
         card.classList.add('hidden');
