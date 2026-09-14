@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="id" style="">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title class="">DOKUMENTASI FAKULTARIA 2026 | Fakultas Komunikasi dan Informatika</title>
+  <!-- Tailwind CSS CDN with forms & container queries -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Google Fonts: Bebas Neue, Montserrat, and Anton -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bebas+Neue&amp;family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&amp;display=swap"
+    rel="stylesheet">
+  <!-- Tailwind Configuration for Custom Theme -->
+  <script data-purpose="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            fki: {
+              dark: '#070D1D',
+              navy: '#0B1528',
+              card: '#0F1E38',
+              cyan: '#00BBF9',
+              'cyan-hover': '#00A8E8',
+              cyanLight: '#38BDF8',
+              yellow: '#FFB703',
+              amber: '#F59E0B',
+              orange: '#FB8500',
+              border: '#1E3A68'
+            }
+          },
+          fontFamily: {
+            headline: ['"Bebas Neue"', '"Anton"', 'sans-serif'],
+            impact: ['"Anton"', 'sans-serif'],
+            sans: ['"Montserrat"', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'pop-cyan': '4px 4px 0px #00BBF9',
+            'pop-yellow': '4px 4px 0px #FFB703',
+            'pop-dark': '5px 5px 0px #030712',
+            'pop-lg': '6px 6px 0px #00BBF9'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body
+  class="bg-dot-matrix text-slate-800 dark:text-slate-100 font-sans min-h-screen overflow-x-hidden selection:bg-fki-cyan selection:text-fki-dark">
+
+  <!-- Gateway Modal -->
+  <div id="role-gateway"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-300">
+    <div
+      class="bg-white dark:bg-fki-card p-8 rounded-2xl shadow-2xl border-4 border-fki-cyan max-w-md w-full text-center relative mx-4">
+      <h2 class="font-impact text-3xl sm:text-4xl uppercase mb-4 text-slate-900 dark:text-white">Pilih Peran</h2>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-8">Silakan pilih peran Anda untuk mengakses dokumentasi.
+      </p>
+
+      <div id="role-buttons" class="flex flex-col gap-4 transition-all duration-300 transform opacity-100 scale-100">
+        <button onclick="selectRole('peserta')"
+          class="w-full bg-fki-yellow hover:bg-fki-amber text-fki-dark font-impact text-xl uppercase py-4 rounded-lg shadow-pop-dark hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+          Saya Peserta
+        </button>
+        <button onclick="showPanitiaToken()"
+          class="w-full bg-slate-200 dark:bg-fki-navy hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-900 dark:text-white font-impact text-xl uppercase py-4 rounded-lg border-2 border-slate-300 dark:border-fki-border transition-all">
+          Saya Panitia
+        </button>
+      </div>
+
+      <div id="token-section"
+        class="hidden flex-col gap-4 mt-4 transition-all duration-300 transform opacity-0 scale-95">
+        <input type="text" id="panitia-token" placeholder="Masukkan Token (PANITIA-FKI-2026)"
+          class="w-full bg-slate-100 dark:bg-fki-navy border-2 border-slate-300 dark:border-fki-border text-slate-900 dark:text-white px-4 py-3 rounded-lg focus:outline-none focus:border-fki-cyan font-mono text-center">
+        <button onclick="verifyToken()"
+          class="w-full bg-fki-cyan hover:bg-fki-cyan-hover text-fki-dark font-impact text-xl uppercase py-3 rounded-lg shadow-pop-dark hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+          Masuk Dashboard
+        </button>
+        <button onclick="hidePanitiaToken()"
+          class="text-xs text-slate-500 dark:text-slate-400 hover:underline mt-2">Kembali</button>
+        <p id="token-error" class="text-red-500 text-xs hidden mt-1">Token salah, silakan coba lagi.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEGIN: StickyNavigationBar -->
+  <header
+    class="sticky top-0 z-40 bg-white dark:bg-fki-dark/90 backdrop-blur-md border-b-2 border-slate-300 dark:border-fki-border/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <!-- Brand Logo -->
+      <a aria-label="Fakultaria 2026 Home" class="flex items-center gap-3 group focus:outline-none" href="#hero">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7LCQH-Cez3x_CzBNz4kLcboaSk0SEvzRsnAe__zE-gaX-z-04Z7qPTqaDurvABTpcK-kiZrv5qmHzm2va33190uFof-JQzN9Okk3keySISGSAOTdLbjEJtusfF6vmrhFD5TgjvKj8vsGu_FyvhIoNmIKyQ9fBOElhlh2DvhSaWZtkiZXvpqiyWCjxAE47oVQQgOPtQMNInc8rKi6h-pJk-I6f_R05E6enEvE5yhTPCUcf_fOyYRVxSqFBuwUYmcl_L4Y"
+          alt="Logo Fakultaria" class="h-9 w-auto object-contain mr-2.5">
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span
+              class="font-hero-main inline-block text-xl tracking-wider text-slate-900 dark:text-white">FAKULTARIA</span>
+            <span class="font-hero-main inline-block text-xl tracking-wider text-fki-yellow">26</span>
+          </div>
+          <p class="text-[10px] font-semibold text-fki-cyan tracking-widest uppercase">FKI • DIVISI DOKUMENTASI</p>
+        </div>
+      </a>
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-7 text-xs lg:text-sm font-bold tracking-wide uppercase">
+        <a class="text-slate-600 dark:text-slate-300 hover:text-fki-cyan transition-colors" href="#hero">Beranda</a>
+        <a class="text-slate-600 dark:text-slate-300 hover:text-fki-cyan transition-colors"
+          href="#dokumentasi">Dokumentasi</a>
+
+        <a class="text-slate-600 dark:text-slate-300 hover:text-fki-cyan transition-colors"
+          href="#highlight">Sorotan</a>
+
+      </nav>
+      <!-- Search & Desktop CTA -->
+      <div class="hidden sm:flex items-center gap-3">
+        <!-- Quick Search Bar -->
+        <div class="relative w-44 lg:w-56">
+          <input
+            class="w-full bg-slate-100 dark:bg-fki-navy/80 border border-slate-300 dark:border-fki-border text-xs rounded-full pl-8 pr-3 py-2 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-fki-cyan focus:ring-1 focus:ring-fki-cyan transition-all"
+            id="searchInput" placeholder="Cari momen anda disini" type="text">
+          <svg class="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-500 dark:text-slate-400" fill="none"
+            stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2.5"></path>
+          </svg>
+        </div>
+        <a class="inline-flex items-center gap-2 bg-fki-cyan hover:bg-fki-cyan-hover text-fki-dark font-extrabold text-xs uppercase px-4 py-2.5 rounded-full border-2 border-white shadow-pop-dark hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+          href="#dokumentasi">
+          <span class="">Dokumentasi</span>
+          <span class="text-base">📸</span></a>
+
+        <button id="themeToggleBtn" aria-label="Toggle Theme"
+          class="p-2 rounded-full bg-slate-200 dark:bg-fki-navy border border-slate-300 dark:border-fki-border text-slate-800 dark:text-slate-100 hover:bg-slate-300 dark:hover:bg-fki-card transition-all focus:outline-none">
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+            </path>
+          </svg>
+          <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+      </div>
+      <!-- Mobile Hamburger Button -->
+      <button aria-label="Buka menu navigasi"
+        class="md:hidden p-2 text-slate-700 dark:text-slate-200 hover:text-fki-cyan focus:outline-none"
+        id="mobileMenuBtn">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Nav Dropdown -->
+    <div
+      class="hidden md:hidden bg-slate-100 dark:bg-fki-navy border-b-2 border-slate-300 dark:border-fki-border px-6 py-4 space-y-3 font-bold uppercase text-sm"
+      id="mobileMenu">
+      <a class="block text-slate-700 dark:text-slate-200 hover:text-fki-cyan py-1 mobile-link" href="#hero">Beranda</a>
+      <a class="block text-slate-700 dark:text-slate-200 hover:text-fki-cyan py-1 mobile-link"
+        href="#dokumentasi">Dokumentasi</a>
+
+      <a class="block text-slate-700 dark:text-slate-200 hover:text-fki-cyan py-1 mobile-link"
+        href="#highlight">Sorotan</a>
+
+      <div class="pt-2">
+        <a class="mobile-link block text-center bg-fki-cyan text-fki-dark py-2 rounded-lg font-black text-xs shadow-pop-dark"
+          href="#dokumentasi">
+          LIHAT DOKUMENTASI 📸
+        </a>
+      </div>
+    </div>
+  </header>
+  <!-- END: StickyNavigationBar -->
+  <main>
+    <!-- BEGIN: HeroSection -->
+    <section
+      class="relative pt-12 pb-24 lg:pt-16 lg:pb-32 overflow-hidden flex flex-col items-center justify-center text-center px-4 sm:px-6"
+      id="hero">
+      <!-- Ambient Glow Orbs -->
+      <div
+        class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-fki-cyan/15 rounded-full blur-3xl pointer-events-none -z-10">
+      </div>
+      <div
+        class="absolute bottom-10 right-10 w-72 h-72 bg-fki-yellow/10 rounded-full blur-3xl pointer-events-none -z-10">
+      </div>
+      <!-- Top Speech Bubble Pill: "SELAMAT DATANG DI FKI! 🎓✨" -->
+      <div class="inline-block mb-4 sm:mb-6 animate-bounce" style="animation-duration: 3s;">
+        <div
+          class="badge-speech bg-white text-fki-cyan border-[3px] border-fki-cyan text-xs sm:text-sm font-black tracking-widest uppercase px-5 py-2 rounded-full shadow-pop-cyan">
+          SELAMAT DATANG DI FKI! 🎓✨
+        </div>
+      </div>
+      <!-- Core Display Headline: Exact Replica & Refinement of Snapshot Design -->
+      <div class="max-w-4xl mx-auto mb-6">
+        <div class="select-none mb-2 text-center">
+          <h1 class="font-hero-main text-6xl sm:text-7xl md:text-8xl uppercase tracking-wider text-dokumentasi mb-1">
+            DOKUMENTASI</h1>
+          <h2
+            class="font-hero-main text-6xl sm:text-7xl md:text-8xl uppercase tracking-wider flex items-center justify-center gap-3">
+            <span class="text-fakultaria">FAKULTARIA</span> <span class="text-year">2026</span>
+          </h2>
+        </div>
+      </div>
+      <!-- Outlined Pill Badge: FAKULTAS KOMUNIKASI DAN INFORMATIKA -->
+      <div class="inline-block mb-5">
+        <div
+          class="border-2 border-fki-cyan bg-transparent text-white text-xs sm:text-sm font-extrabold uppercase tracking-widest px-6 py-2 rounded-full shadow-pop-cyan">
+          FAKULTAS KOMUNIKASI DAN INFORMATIKA
+        </div>
+      </div>
+      <!-- Comic Quote Sticker Box: "EVERY MOMENT TELLS A STORY." -->
+      <div class="mb-7 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+        <div class="inline-block bg-[#091b35] border-2 border-fki-cyan px-6 sm:px-8 py-2.5 rounded-lg shadow-pop-cyan">
+          <p class="font-impact italic tracking-widest text-white text-sm sm:text-lg md:text-xl uppercase">
+            “EVERY MOMENT TELLS A STORY.”
+          </p>
+        </div>
+      </div>
+      <!-- Clean Explanatory Subtext -->
+      <p class="max-w-2xl text-white text-sm sm:text-base md:text-lg font-normal leading-relaxed mb-9 px-2">Pusat
+        dokumentasi digital resmi untuk melihat kembali memori, kebersamaan, dan keseruan kegiatan <strong>FAKULTARIA
+          2026</strong> Fakultas Komunikasi dan Informatika.</p>
+      <!-- Action Button Group -->
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <!-- Primary Cyan Button from reference -->
+        <a class="inline-flex items-center gap-3 bg-fki-cyan hover:bg-[#20c7ff] text-white font-impact italic text-lg sm:text-xl tracking-wider px-8 py-3.5 rounded-lg shadow-pop-dark hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+          href="#dokumentasi">
+          <span class="">LIHAT DOKUMENTASI</span>
+          <span class="text-xl">📸</span>
+        </a>
+        <!-- Secondary Outline Button -->
+        <a class="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base uppercase tracking-wider px-7 py-3.5 rounded-lg border-2 border-fki-yellow shadow-pop-yellow hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+          href="#highlight">
+          <span class="">JELAJAHI KEGIATAN</span>
+          <span class="">→</span>
+        </a>
+      </div>
+      <!-- Floating Polaroid Badges flanking Hero on large displays -->
+      <div
+        class="hidden xl:block absolute left-[12%] 2xl:left-[18%] top-1/3 transform -rotate-6 transition-all hover:rotate-0 hover:scale-105 duration-300">
+        <div class="bg-white p-2.5 rounded shadow-2xl w-48 border-2 border-slate-900">
+          <div class="h-32 bg-slate-800 rounded overflow-hidden relative">
+            <img alt="Inagurasi Crowd" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzoeUvT1QNrFa06I04rSP6HNghrViV3nw2W3l5ASmdb1bvNqcRjEzBlBBv8xunqjndEFHk-ONJZULWjsDxl4QQczStFFeu_609VMF0b8AYS4IJv-TDkavjnR0PR9HRh7rkkF9k-ETxgnFz7TM2QVyCc6eG7ATvbKGh3-U22eyuVy1u5G_c-S1VZfOBMgriUPP2wJKD5zyOL_dGKI1lu9ALa_j7mjZhJXNZudpNYHqsmC6yJe0wVByMRA">
+            <span
+              class="absolute top-1 right-1 bg-fki-yellow text-fki-dark text-[9px] font-black px-1.5 py-0.5 rounded">OPENING</span>
+          </div>
+          <p class="font-impact text-slate-800 text-xs mt-2 uppercase text-left tracking-wide">Malam Puncak • 2025</p>
+        </div>
+      </div>
+      <div
+        class="hidden xl:block absolute right-[12%] 2xl:right-[18%] top-1/3 transform rotate-6 transition-all hover:rotate-0 hover:scale-105 duration-300">
+        <div class="bg-white p-2.5 rounded shadow-2xl w-48 border-2 border-slate-900">
+          <div class="h-32 bg-slate-800 rounded overflow-hidden relative">
+            <img alt="Audience Energy" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNBLGhHZzeu6rFaMtykrZklLZ7o4CPOfXH4tm6zaJRalYpcaud3yfOjpnpla_2TnMnrUPNAmPU7RA61EqminhEbEt9EecdCnp1iD8hTwXOVixNJi-An477J4g-KC-GIxO9okcaZHLzjX6RV8QECK4f-EFivFh2DxwmPSdrLFjWVtbEr0t04YTUdDUds8Ae-AJAkL4Ws56-4o9nbDnrO1X1BRXUQvor8X9yz_tO2aSCS6P1rOkMBD93AA">
+            <span
+              class="absolute top-1 right-1 bg-fki-cyan text-fki-dark text-[9px] font-black px-1.5 py-0.5 rounded">STAGE
+              🔥</span>
+          </div>
+          <p class="font-impact text-slate-800 text-xs mt-2 uppercase text-left tracking-wide">Gemuruh Mahasiswa FKI</p>
+        </div>
+      </div>
+      <div
+        class="hidden md:flex absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 flex-col items-center justify-center z-20 pointer-events-none select-none animate-bounce"
+        style="animation-duration: 4s;">
+        <div
+          class="bg-white text-fki-dark font-impact text-xs uppercase px-3 py-1.5 rounded-xl border-2 border-fki-cyan shadow-pop-cyan mb-2 transform rotate-3">
+          Halo FKI Squad! 🦊⚡</div><img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSFbe-mzmmBRfY5lAR9-A3fTdGiCgCH-IMpsDpXSaWYIcTiWphWXWx0fCW_9V55lUSnLfabDzYzhQT1BRs7HFwNzt5p48Dkf2hDigmFbs5exT9wGGvVNqx5vIUsFB9EOj1AjQyC9oy89h5NJJi1AjSY11DrIHU0pSOQVP4QEaYqEEjncGSUE9LUUAJ6LSJR6Ku7f13sVSCSZSbMrm5_w1mPGnbgf94kvqFuwAviYz1JA_vadOJISAth02sycg2NgUrpNQ"
+          alt="Maskot FKI"
+          class="w-32 sm:w-36 lg:w-44 h-auto object-contain drop-shadow-[0_10px_25px_rgba(0,187,249,0.4)] transform hover:scale-105 transition-transform">
+      </div>
+    </section>
+    <!-- END: HeroSection -->
+
+    <!-- BEGIN: PhotoGallerySection -->
+    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="dokumentasi">
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <div
+            class="inline-flex items-center gap-2 bg-fki-yellow text-fki-dark font-black text-xs px-3 py-1 rounded-md uppercase tracking-wider mb-3 shadow-pop-dark">
+            <span class="">ARCHIVE 26</span>
+            <span class="">✨</span>
+          </div>
+          <h2
+            class="font-hero-main text-4xl sm:text-5xl md:text-6xl text-slate-900 dark:text-white tracking-wide uppercase">
+            EXPLORE THE <span class="text-fki-cyan">ARCHIVE 26</span></h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base max-w-lg mt-2">
+            Pilih kategori atau gunakan filter untuk menemukan dokumentasi keseruan setiap rangkaian acara Fakultas
+            Komunikasi dan Informatika.
+          </p>
+        </div>
+        <!-- Gallery Filter Pills -->
+        <div class="flex flex-wrap gap-2" id="filterTabs">
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all bg-fki-cyan text-fki-dark border-2 border-fki-cyan shadow-pop-dark"
+            data-category="all">
+            Semua
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-slate-100 dark:bg-fki-navy text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-fki-border hover:border-fki-cyan hover:text-slate-900 dark:text-white"
+            data-category="day1">
+            Day 1
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-slate-100 dark:bg-fki-navy text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-fki-border hover:border-fki-cyan hover:text-slate-900 dark:text-white"
+            data-category="day2">
+            Day 2
+          </button>
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-slate-100 dark:bg-fki-navy text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-fki-border hover:border-fki-cyan hover:text-slate-900 dark:text-white"
+            data-category="day3">
+            Day 3
+          </button>
+        </div>
+      </div>
+      <!-- Masonry/Responsive Photo Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+        <!-- Gallery Card 3.5: Ekspo UKM -->
+        <article
+          class="gallery-item group relative bg-slate-50 dark:bg-fki-card rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-fki-border hover:border-fki-cyan transition-all duration-300 hover:-translate-y-1 hover:shadow-pop-cyan"
+          data-category="day2">
+          <div class="relative h-64 overflow-hidden cursor-pointer"
+            onclick="window.open('https://drive.google.com/drive/folders/1q4rezVDLNUAF5rwyynqbE81O1C6QyJzh?usp=sharing', '_blank')">
+            <img alt="Ekspo UKM &amp; Ormawa"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"
+              src="1 (1548).jpg.jpeg">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-fki-dark via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
+            </div>
+            <span
+              class="absolute top-3 left-3 bg-fki-yellow text-fki-dark text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow">Day
+              2</span>
+            <span
+              class="absolute bottom-3 right-3 text-[11px] bg-black/60 backdrop-blur-sm text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-mono">8
+              September 2026</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-fki-cyan transition-colors">
+              EXPO UKM &amp; ORMAWA</h3>
+            <div
+              class="mt-4 pt-3 border-t border-slate-300 dark:border-fki-border/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span class="">ARCHIVE 2026</span>
+              <button class="text-fki-cyan hover:text-slate-900 dark:text-white font-bold flex items-center gap-1"
+                onclick="window.open('https://drive.google.com/drive/folders/1q4rezVDLNUAF5rwyynqbE81O1C6QyJzh?usp=sharing', '_blank')">
+                <span class="">ARCHIVE 2026</span> 🔍
+              </button>
+            </div>
+          </div>
+        </article>
+        <!-- Gallery Card 3.75: Fakulty Tour -->
+        <article
+          class="gallery-item group relative bg-slate-50 dark:bg-fki-card rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-fki-border hover:border-fki-cyan transition-all duration-300 hover:-translate-y-1 hover:shadow-pop-cyan"
+          data-category="day2">
+          <div class="relative h-64 overflow-hidden cursor-pointer"
+            onclick="window.open('https://drive.google.com/drive/folders/1lqdEitWe5TT1KmLO_GxUBL2KUgNPeRwq?usp=sharing', '_blank')">
+            <img alt="FAKULTY TOUR"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"
+              src="1 (63).jpg">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-fki-dark via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
+            </div>
+            <span
+              class="absolute top-3 left-3 bg-fki-yellow text-fki-dark text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow">Day
+              2</span>
+            <span
+              class="absolute bottom-3 right-3 text-[11px] bg-black/60 backdrop-blur-sm text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-mono">8
+              September 2026</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-fki-cyan transition-colors">
+              FAKULTY TOUR</h3>
+            <div
+              class="mt-4 pt-3 border-t border-slate-300 dark:border-fki-border/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span class="">ARCHIVE 2026</span>
+              <button class="text-fki-cyan hover:text-slate-900 dark:text-white font-bold flex items-center gap-1"
+                onclick="window.open('https://drive.google.com/drive/folders/1lqdEitWe5TT1KmLO_GxUBL2KUgNPeRwq?usp=sharing', '_blank')">
+                <span class="">ARCHIVE 2026</span> 🔍
+              </button>
+            </div>
+          </div>
+        </article>
+        <!-- Gallery Card 3.8: Peserta Day 2 -->
+        <article
+          class="gallery-item group relative bg-slate-50 dark:bg-fki-card rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-fki-border hover:border-fki-cyan transition-all duration-300 hover:-translate-y-1 hover:shadow-pop-cyan"
+          data-category="day2">
+          <div class="relative h-64 overflow-hidden cursor-pointer"
+            onclick="window.open('https://drive.google.com/drive/folders/1k3YLDiMo660XpJsRjB7gXqfAD3GTJDU-?usp=sharing', '_blank')">
+            <img alt="PESERTA"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"
+              src="IMG_9057.JPG">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-fki-dark via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
+            </div>
+            <span
+              class="absolute top-3 left-3 bg-fki-yellow text-fki-dark text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow">DAY
+              2</span>
+            <span
+              class="absolute bottom-3 right-3 text-[11px] bg-black/60 backdrop-blur-sm text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-mono">8
+              September 2026</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-fki-cyan transition-colors">
+              PESERTA</h3>
+            <div
+              class="mt-4 pt-3 border-t border-slate-300 dark:border-fki-border/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span class="">ARCHIVE 2026</span>
+              <button class="text-fki-cyan hover:text-slate-900 dark:text-white font-bold flex items-center gap-1"
+                onclick="window.open('https://drive.google.com/drive/folders/1k3YLDiMo660XpJsRjB7gXqfAD3GTJDU-?usp=sharing', '_blank')">
+                <span class="">ARCHIVE 2026</span> 🔍
+              </button>
+            </div>
+          </div>
+        </article>
+        <!-- Gallery Card 5.5: Outbond -->
+        <article
+          class="gallery-item group relative bg-slate-50 dark:bg-fki-card rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-fki-border hover:border-fki-cyan transition-all duration-300 hover:-translate-y-1 hover:shadow-pop-cyan"
+          data-category="day3">
+          <div class="relative h-64 overflow-hidden cursor-pointer"
+            onclick="window.open('https://drive.google.com/drive/folders/1Q5epxTVirSmLmK3f3KzC8syZnAgkfJu9?usp=sharing', '_blank')">
+            <img alt="Outbond"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"
+              src="DSC00279.JPG.jpeg">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-fki-dark via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
+            </div>
+            <span
+              class="absolute top-3 left-3 bg-pink-500 text-slate-900 dark:text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow">DAY
+              3</span>
+            <span
+              class="absolute bottom-3 right-3 text-[11px] bg-black/60 backdrop-blur-sm text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-mono">9
+              September 2026</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-fki-cyan transition-colors">
+              OUTBOND</h3>
+            <div
+              class="mt-4 pt-3 border-t border-slate-300 dark:border-fki-border/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span class="">ARCHIVE 2026</span>
+              <button class="text-fki-cyan hover:text-slate-900 dark:text-white font-bold flex items-center gap-1"
+                onclick="window.open('https://drive.google.com/drive/folders/1Q5epxTVirSmLmK3f3KzC8syZnAgkfJu9?usp=sharing', '_blank')">
+                <span class="">ARCHIVE 2026</span> 🔍
+              </button>
+            </div>
+          </div>
+        </article>
+        <!-- Gallery Card 5.75: Peserta -->
+        <article
+          class="gallery-item group relative bg-slate-50 dark:bg-fki-card rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-fki-border hover:border-fki-cyan transition-all duration-300 hover:-translate-y-1 hover:shadow-pop-cyan"
+          data-category="day3">
+          <div class="relative h-64 overflow-hidden cursor-pointer"
+            onclick="window.open('https://drive.google.com/drive/folders/1oDBrOChzMUgF2_ePTS7WXjstBq4yyOOM?usp=sharing', '_blank')">
+            <img alt="PESERTA"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"
+              src="IMG_9987.JPG">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-fki-dark via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
+            </div>
+            <span
+              class="absolute top-3 left-3 bg-pink-500 text-slate-900 dark:text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow">DAY
+              3</span>
+            <span
+              class="absolute bottom-3 right-3 text-[11px] bg-black/60 backdrop-blur-sm text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-mono">9
+              September 2026</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-fki-cyan transition-colors">
+              PESERTA</h3>
+            <div
+              class="mt-4 pt-3 border-t border-slate-300 dark:border-fki-border/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span class="">ARCHIVE 2026</span>
+              <button class="text-fki-cyan hover:text-slate-900 dark:text-white font-bold flex items-center gap-1"
+                onclick="window.open('https://drive.google.com/drive/folders/1oDBrOChzMUgF2_ePTS7WXjstBq4yyOOM?usp=sharing', '_blank')">
+                <span class="">ARCHIVE 2026</span> 🔍
+              </button>
+            </div>
+          </div>
+        </article>
+        <!-- Gallery Card 6: Closing Party -->
+        <article
+          class="gallery-item group relative bg-slate-50 dark:bg-fki-card rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-fki-border hover:border-fki-cyan transition-all duration-300 hover:-translate-y-1 hover:shadow-pop-cyan"
+          data-category="day3">
+          <div class="relative h-64 overflow-hidden cursor-pointer"
+            onclick="window.open('https://drive.google.com/drive/folders/12XipVoYp39OmPjK6XgblYfa5CZAElKDf?usp=sharing', '_blank')">
+            <img alt="Inagurasi"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy"
+              src="DSC01265.JPG.jpeg">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-fki-dark via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
+            </div>
+            <span
+              class="absolute top-3 left-3 bg-pink-500 text-slate-900 dark:text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow">Day
+              3</span>
+            <span
+              class="absolute bottom-3 right-3 text-[11px] bg-black/60 backdrop-blur-sm text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded font-mono">9
+              September 2026</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-fki-cyan transition-colors">
+              INAGURASI</h3>
+            <div
+              class="mt-4 pt-3 border-t border-slate-300 dark:border-fki-border/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span class="">ARCHIVE 2026</span>
+              <button class="text-fki-cyan hover:text-slate-900 dark:text-white font-bold flex items-center gap-1"
+                onclick="window.open('https://drive.google.com/drive/folders/12XipVoYp39OmPjK6XgblYfa5CZAElKDf?usp=sharing', '_blank')">
+                <span class="">ARCHIVE 2026</span> 🔍
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </section>
+    <!-- END: PhotoGallerySection -->
+    <!-- BEGIN: FeaturedHighlightSection -->
+    <section
+      class="py-20 bg-gradient-to-b from-fki-navy/80 to-fki-dark border-t-2 border-slate-300 dark:border-fki-border relative"
+      id="highlight">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <!-- Image Highlight with comic offset shadow frame -->
+          <div class="lg:col-span-7">
+            <div class="relative">
+              <!-- Colored Backing Box -->
+              <div
+                class="absolute -inset-2 rounded-2xl bg-gradient-to-r from-fki-cyan to-fki-yellow opacity-75 blur-sm transform -rotate-1">
+              </div>
+              <!-- Main Photo Container -->
+              <div
+                class="relative bg-slate-50 dark:bg-fki-card rounded-xl overflow-hidden border-4 border-white shadow-2xl">
+                <div
+                  class="w-full h-80 sm:h-96 lg:h-[420px] bg-slate-900 flex flex-col items-center justify-center text-center p-6 relative">
+                  <div class="absolute inset-0 bg-fki-cyan/5 animate-pulse"></div>
+                  <div class="relative z-10 flex flex-col items-center">
+                    <svg class="w-16 h-16 sm:w-20 sm:h-20 text-fki-cyan mb-4 opacity-80 animate-bounce" fill="none"
+                      stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                      </path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h4
+                      class="font-impact text-3xl sm:text-5xl text-white tracking-widest uppercase mb-2 drop-shadow-lg">
+                      COMING SOON</h4>
+                    <p class="text-sm sm:text-base text-slate-400 max-w-md mx-auto">After Movie FAKULTARIA 2026 sedang
+                      dalam proses editing. Nantikan perilisan resminya!</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Sticker Badge -->
+              <div
+                class="absolute -bottom-5 -right-3 sm:right-6 bg-fki-cyan text-fki-dark font-impact px-4 py-2 rounded-lg border-2 border-white shadow-pop-dark transform rotate-3">
+                100% UNFORGETTABLE! 🔥
+              </div>
+            </div>
+          </div>
+          <!-- Editorial Narrative Content -->
+          <div class="lg:col-span-5 space-y-5">
+            <div
+              class="inline-block bg-fki-cyan/10 border border-fki-cyan/40 px-3.5 py-1 rounded-full text-xs font-black text-fki-cyan uppercase tracking-wider">
+              AFTER MOVIE
+            </div>
+            <h2 class="font-hero-main text-3xl sm:text-4xl lg:text-5xl text-white uppercase leading-tight">
+              TIGA HARI <br>
+              <span class="text-fki-yellow">RIBUAN MEMORI</span> BERMAKNA.
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">FAKULTARIA 2026 bukan sekadar seremonial
+              tahunan, melainkan wadah peleburan kreativitas, sportivitas, dan solidaritas keluarga besar Informatika
+              dan Ilmu Komunikasi.</p>
+            <!-- Testimonial Quote Box -->
+            <div class="p-4 rounded-xl bg-white/10 border-l-4 border-fki-yellow text-slate-200">
+              <p class="italic text-xs sm:text-sm font-medium">
+                “Terima kasih untuk setiap panitia, relawan, pengisi acara, dan seluruh mahasiswa FKI yang menumpahkan
+                energi terbaiknya. Sampai jumpa di FAKULTARIA selanjutnya!”
+              </p>
+              <div class="mt-3 flex items-center gap-3">
+                <div
+                  class="w-8 h-8 rounded-full bg-fki-yellow flex items-center justify-center text-fki-dark font-black text-xs">
+                  KF
+                </div>
+                <div>
+                  <div class="text-xs font-extrabold text-white">Ketua Panitia FAKULTARIA 2026</div>
+                  <div class="text-[10px] text-fki-cyan">BEM FKI Periode 2025/2026</div>
+                </div>
+              </div>
+            </div>
+            <!-- Download Button -->
+            <div class="pt-2">
+              <a class="inline-flex items-center gap-2 bg-white hover:bg-slate-200 text-fki-dark font-extrabold text-xs uppercase px-6 py-3 rounded-lg border-2 border-fki-cyan shadow-pop-cyan transition-all"
+                href="#dokumentasi">
+                <span class="">Lihat Koleksi Foto Resmi</span>
+                <span class="">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: FeaturedHighlightSection -->
+    <!-- BEGIN: EventTimelineSection -->
+
+    <!-- END: EventTimelineSection -->
+    <!-- BEGIN: FinalCallToActionSection -->
+    <section
+      class="py-16 bg-gradient-to-r from-[#0a1835] via-[#091b3d] to-[#0a1835] border-y-2 border-slate-300 dark:border-fki-border text-center px-4 sm:px-6 relative overflow-hidden">
+      <!-- Starburst Graphic Accents -->
+      <div class="absolute -top-12 -left-12 w-48 h-48 bg-fki-cyan/10 rounded-full blur-2xl"></div>
+      <div class="absolute -bottom-12 -right-12 w-48 h-48 bg-fki-yellow/10 rounded-full blur-2xl"></div>
+      <div class="max-w-3xl mx-auto relative z-10">
+        <div class="flex justify-center mb-4">
+          <div class="relative inline-block"><img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAihWVGLvH94lWRP9WBwwdrrEOyvRGIdVxufPxxxtjeXC9lCozeDHlkJ1zVxZZj5aRfDei4DVO0b-pRFF86Kt5_jGt7sDzqTZ3sNbWsFT31BqUNMY5lul9Qgi37-FKqtKg7o7EThNxYsP9unxvjt0vFyXHXLwNvqLgHc8pwilxAprnLWrdw4s0qeTwkdmc9t6xMj8TOYn8DV8_5M1aAzir3e54h6KoVN8zNFZvFjtkg5kHpZ7lYLkkScGobHyLe3AJQiZM"
+              alt="Maskot Resmi FAKULTARIA 25"
+              class="w-24 sm:w-28 h-auto object-contain drop-shadow-[0_8px_20px_rgba(255,183,3,0.35)] hover:scale-110 transition-transform"><span
+              class="absolute -bottom-2 -right-4 bg-fki-yellow text-fki-dark font-impact text-[10px] uppercase px-2 py-0.5 rounded-full border border-fki-dark shadow-pop-dark transform -rotate-6">MASKOT
+              FKI</span></div>
+        </div>
+        <div
+          class="inline-block bg-fki-yellow text-fki-dark text-xs font-black uppercase px-3 py-1 rounded shadow mb-4">
+          DIGITAL ARCHIVE • FKI
+        </div>
+        <h2 class="font-hero-main text-4xl sm:text-6xl text-white tracking-wider uppercase">
+          SETIAP MOMEN <span class="text-fki-yellow">PUNYA CERITA.</span>
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base mt-3 max-w-xl mx-auto leading-relaxed">Mari kembali mengingat
+          perjalanan FAKULTARIA 2026 bersama keluarga besar Fakultas Komunikasi dan Informatika. Unduh dan bagikan
+          memori kebersamaan kita!</p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a class="bg-fki-cyan hover:bg-fki-cyan-hover text-fki-dark font-impact text-lg uppercase px-8 py-3 rounded-lg border-2 border-white shadow-pop-dark transition-all hover:scale-105"
+            href="#dokumentasi">
+            JELAJAHI SELURUH ARSIP 🚀
+          </a>
+
+        </div>
+      </div>
+    </section>
+    <!-- END: FinalCallToActionSection -->
+  </main>
+  <!-- BEGIN: MainFooter -->
+  <footer
+    class="bg-slate-100 dark:bg-[#050a16] border-t border-slate-300 dark:border-fki-border text-slate-500 dark:text-slate-400 py-12 px-4 sm:px-6 lg:px-8 text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      <!-- Brand & Faculty Info -->
+      <div class="md:col-span-2 space-y-3">
+        <div class="flex items-center gap-2">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8YSj2pCz5T9AUxRElCBqB-7JX82LA6dm_CqGmZw_ACp8YKicPDK71SBo9ekku4JZQd_xnPc7HX64BArLCulDOXAV2brNOsRkCPqhTAYAMiwo4IYWBGx3H-0g5t_r-MfgMaCB9KiXHI8HLMYOSZThLewk98WiYRjeMJvslwzl8TEgwCAhHuxPaBmqZ83WBUtmGu87vPq6jdCafWPIaLHxg_FlVRUf-95FW_3TIgbD3qQrlIAm8slGsRC5Gj2TmXqmB0_U"
+            alt="Logo Fakultaria" class="h-10 w-auto object-contain mr-2.5">
+          <span class="font-impact text-xl text-slate-900 dark:text-white tracking-wider">FAKULTARIA 2026</span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 max-w-md leading-relaxed text-xs">
+          Portal dokumentasi resmi perayaan milad &amp; pekan orientasi mahasiswa Fakultas Komunikasi dan Informatika
+          (FKI). Menjaga cerita, semangat, dan jejak prestasi selalu abadi.
+        </p>
+        <p class="text-[11px] text-fki-cyan">Gedung FKI Kampus Pusat • Universitas Muhammadiyah Surakarta</p>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-3">Tautan Cepat</h4>
+        <ul class="space-y-2">
+          <li class=""><a class="hover:text-fki-cyan transition-colors" href="#hero">Beranda Utama</a></li>
+          <li class=""><a class="hover:text-fki-cyan transition-colors" href="#dokumentasi">Galeri Foto</a></li>
+
+
+          </li>
+          <li class=""><a class="hover:text-fki-yellow transition-colors" href="https://fki.ums.ac.id" rel="noopener"
+              target="_blank">Website Resmi FKI ↗</a></li>
+        </ul>
+      </div>
+      <!-- Social & Panitia Contact -->
+      <div>
+        <h4 class="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-3">Sosial Media &amp;
+          Kontak</h4>
+        <ul class="space-y-2">
+          <li class=""><a class="hover:text-fki-cyan flex items-center gap-2" href="#"><span class="">📷</span>
+              Instagram: @fakultaria26</a></li>
+          <li class=""><a class="hover:text-fki-cyan flex items-center gap-2" href="#"><span class="">📷</span>
+              Instagram: @fakultaria26</a></li>
+          <li class=""></li>
+          <li class=""></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Copyright Sub-strip -->
+    <div
+      class="max-w-7xl mx-auto pt-6 border-t border-slate-300 dark:border-fki-border/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+      <p class="">© 2026 FAKULTARIA 2026 • Fakultas Komunikasi dan Informatika. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <span class="">Designed with 💙 for FKI Family</span>
+        <a class="text-fki-cyan hover:underline font-bold" href="#hero">Kembali ke Atas ↑</a>
+      </div>
+    </div>
+  </footer>
+  <!-- END: MainFooter -->
+  <!-- BEGIN: InteractiveLightboxModal -->
+  <div aria-label="Penampil Foto Dokumentasi" aria-modal="true"
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 transition-all duration-300"
+    id="lightboxModal" role="dialog">
+    <!-- Close Button -->
+    <button aria-label="Tutup foto"
+      class="absolute top-5 right-5 text-slate-900 dark:text-white/80 hover:text-slate-900 dark:text-white bg-slate-100 dark:bg-fki-navy/80 hover:bg-slate-50 dark:bg-fki-card p-3 rounded-full border border-slate-300 dark:border-fki-border focus:outline-none transition-all z-20"
+      onclick="closeLightbox()">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+      </svg>
+    </button>
+    <!-- Modal Content Window -->
+    <div
+      class="max-w-4xl w-full bg-slate-50 dark:bg-fki-card rounded-2xl overflow-hidden border-2 border-fki-cyan shadow-pop-cyan">
+      <div class="relative max-h-[75vh] bg-black flex items-center justify-center">
+        <img alt="Detail Dokumentasi" class="max-h-[70vh] w-auto object-contain mx-auto" id="lightboxImg" src="">
+      </div>
+      <div
+        class="p-5 bg-slate-100 dark:bg-fki-navy border-t border-slate-300 dark:border-fki-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base sm:text-lg" id="lightboxTitle">Judul Foto</h3>
+          <p class="text-xs text-fki-cyan mt-0.5" id="lightboxMeta">Tanggal • Lokasi</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            class="bg-fki-cyan hover:bg-fki-cyan-hover text-fki-dark font-extrabold text-xs px-4 py-2 rounded-lg border border-white transition-colors"
+            onclick="alert('Fitur unduh berkas foto definisi tinggi (High-Res 4K) aktif!')">
+            Unduh Foto HD 📥
+          </button>
+          <button
+            class="bg-slate-700 hover:bg-slate-600 text-slate-900 dark:text-white font-bold text-xs px-3 py-2 rounded-lg transition-colors"
+            onclick="closeLightbox()">
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END: InteractiveLightboxModal -->
+  <script src="script.js"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

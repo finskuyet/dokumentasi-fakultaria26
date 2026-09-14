@@ -1,0 +1,8 @@
+{
+  "name": "fakultaria-docs",
+  "version": "1.0.0",
+  "description": "Dokumentasi Fakultas Komunikasi dan Informatika 2026",
+  "scripts": {
+    "build": "node build.js"
+  }
+}

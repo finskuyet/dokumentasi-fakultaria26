@@ -1,0 +1,64 @@
+.font-hero-main {
+  font-family: 'Anton', 'Bebas Neue', sans-serif;
+  letter-spacing: 0.05em;
+  transform: skew(-4deg);
+}
+
+.text-dokumentasi {
+  color: white;
+  text-shadow: 5px 5px 0px #00BBF9;
+  -webkit-text-stroke: 1px #00BBF9;
+}
+
+.text-fakultaria {
+  color: #FFB703;
+  text-shadow: 5px 5px 0px #00BBF9;
+  -webkit-text-stroke: 1px #00BBF9;
+}
+
+.text-year {
+  color: #00BBF9;
+  text-shadow: 5px 5px 0px #030712;
+  -webkit-text-stroke: 1px #030712;
+}
+.text-depth-yellow {
+  color: #ffb703;
+  text-shadow: 
+    -2px -2px 0 #070d1d,
+     2px -2px 0 #070d1d,
+    -2px  2px 0 #070d1d,
+     2px  2px 0 #070d1d,
+     4px  6px 0 #00bbf9;
+}
+
+/* Dark mode deep space grid matrix pattern */
+.dark .bg-dot-matrix {
+  background-color: #070D1D;
+  background-image: radial-gradient(rgba(0, 187, 249, 0.22) 1.25px, transparent 1.25px),
+                    radial-gradient(rgba(255, 183, 3, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px, 56px 56px;
+  background-position: 0 0, 14px 14px;
+}
+
+/* Light mode blue grid pattern matching image */
+.bg-dot-matrix {
+  background-color: #1e3a8a; /* deep blue */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.badge-speech {
+  position: relative;
+}
+.badge-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 36%;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #00bbf9;
+}
