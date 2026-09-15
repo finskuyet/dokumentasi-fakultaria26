@@ -4,5 +4,8 @@
   "description": "Dokumentasi Fakultas Komunikasi dan Informatika 2026",
   "scripts": {
     "build": "node build.js"
+  },
+  "dependencies": {
+    "sharp": "^0.35.4"
   }
 }
