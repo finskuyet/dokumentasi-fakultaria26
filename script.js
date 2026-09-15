@@ -45,20 +45,23 @@ filterButtons.forEach(btn => {
 });
 
 // Real-time Search input for photo titles
-const searchInput = document.getElementById('searchInput');
-if (searchInput) {
-  searchInput.addEventListener('keyup', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    galleryCards.forEach(card => {
-      const text = card.textContent.toLowerCase();
-      if (text.includes(query)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
+const setupSearch = (input) => {
+  if (input) {
+    input.addEventListener('keyup', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      galleryCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
     });
-  });
-}
+  }
+};
+setupSearch(document.getElementById('searchInput'));
+setupSearch(document.getElementById('mobileSearchInput'));
 
 // Lightbox modal functionality
 const lightboxModal = document.getElementById('lightboxModal');
