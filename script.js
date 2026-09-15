@@ -23,13 +23,13 @@ filterButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     // Reset state
     filterButtons.forEach(b => {
-      b.classList.remove('bg-fki-cyan', 'text-fki-dark', 'border-fki-cyan', 'shadow-pop-dark');
-      b.classList.add('bg-fki-navy', 'text-slate-300', 'border-fki-border');
+      b.classList.remove('bg-fki-cyan', 'text-fki-dark', 'border-2', 'border-fki-cyan', 'shadow-pop-dark', 'font-black');
+      b.classList.add('bg-slate-100', 'dark:bg-fki-navy', 'text-slate-600', 'dark:text-slate-300', 'border', 'border-slate-300', 'dark:border-fki-border', 'hover:border-fki-cyan', 'hover:text-slate-900', 'dark:hover:text-white', 'font-bold');
     });
 
     // Set active state
-    btn.classList.add('bg-fki-cyan', 'text-fki-dark', 'border-fki-cyan', 'shadow-pop-dark');
-    btn.classList.remove('bg-fki-navy', 'text-slate-300', 'border-fki-border');
+    btn.classList.add('bg-fki-cyan', 'text-fki-dark', 'border-2', 'border-fki-cyan', 'shadow-pop-dark', 'font-black');
+    btn.classList.remove('bg-slate-100', 'dark:bg-fki-navy', 'text-slate-600', 'dark:text-slate-300', 'border', 'border-slate-300', 'dark:border-fki-border', 'hover:border-fki-cyan', 'hover:text-slate-900', 'dark:hover:text-white', 'font-bold');
 
     const category = btn.getAttribute('data-category');
 
@@ -50,9 +50,8 @@ if (searchInput) {
   searchInput.addEventListener('keyup', (e) => {
     const query = e.target.value.toLowerCase().trim();
     galleryCards.forEach(card => {
-      const title = card.querySelector('h3').textContent.toLowerCase();
-      const desc = card.querySelector('p').textContent.toLowerCase();
-      if (title.includes(query) || desc.includes(query)) {
+      const text = card.textContent.toLowerCase();
+      if (text.includes(query)) {
         card.classList.remove('hidden');
       } else {
         card.classList.add('hidden');

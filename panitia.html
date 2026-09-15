@@ -81,23 +81,26 @@
           href="#highlight">Sorotan</a>
 
       </nav>
-      <!-- Search & Desktop CTA -->
-      <div class="hidden sm:flex items-center gap-3">
-        <!-- Quick Search Bar -->
-        <div class="relative w-44 lg:w-56">
-          <input
-            class="w-full bg-slate-100 dark:bg-fki-navy/80 border border-slate-300 dark:border-fki-border text-xs rounded-full pl-8 pr-3 py-2 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-fki-cyan focus:ring-1 focus:ring-fki-cyan transition-all"
-            id="searchInput" placeholder="Cari momen anda disini" type="text">
-          <svg class="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-500 dark:text-slate-400" fill="none"
-            stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2.5"></path>
-          </svg>
+      <!-- Actions Group -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Search & Desktop CTA -->
+        <div class="hidden sm:flex items-center gap-3">
+          <!-- Quick Search Bar -->
+          <div class="relative w-44 lg:w-56">
+            <input
+              class="w-full bg-slate-100 dark:bg-fki-navy/80 border border-slate-300 dark:border-fki-border text-xs rounded-full pl-8 pr-3 py-2 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-fki-cyan focus:ring-1 focus:ring-fki-cyan transition-all"
+              id="searchInput" placeholder="Cari momen anda disini" type="text">
+            <svg class="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-500 dark:text-slate-400" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2.5"></path>
+            </svg>
+          </div>
+          <a class="inline-flex items-center gap-2 bg-fki-cyan hover:bg-fki-cyan-hover text-fki-dark font-extrabold text-xs uppercase px-4 py-2.5 rounded-full border-2 border-white shadow-pop-dark hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+            href="#dokumentasi">
+            <span class="">Dokumentasi</span>
+            <span class="text-base">📸</span></a>
         </div>
-        <a class="inline-flex items-center gap-2 bg-fki-cyan hover:bg-fki-cyan-hover text-fki-dark font-extrabold text-xs uppercase px-4 py-2.5 rounded-full border-2 border-white shadow-pop-dark hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
-          href="#dokumentasi">
-          <span class="">Dokumentasi</span>
-          <span class="text-base">📸</span></a>
 
         <button id="themeToggleBtn" aria-label="Toggle Theme"
           class="p-2 rounded-full bg-slate-200 dark:bg-fki-navy border border-slate-300 dark:border-fki-border text-slate-800 dark:text-slate-100 hover:bg-slate-300 dark:hover:bg-fki-card transition-all focus:outline-none">
@@ -112,15 +115,15 @@
           </svg>
         </button>
 
+        <!-- Mobile Hamburger Button -->
+        <button aria-label="Buka menu navigasi"
+          class="md:hidden p-2 text-slate-700 dark:text-slate-200 hover:text-fki-cyan focus:outline-none"
+          id="mobileMenuBtn">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+          </svg>
+        </button>
       </div>
-      <!-- Mobile Hamburger Button -->
-      <button aria-label="Buka menu navigasi"
-        class="md:hidden p-2 text-slate-700 dark:text-slate-200 hover:text-fki-cyan focus:outline-none"
-        id="mobileMenuBtn">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-        </svg>
-      </button>
     </div>
     <!-- Mobile Nav Dropdown -->
     <div
@@ -164,18 +167,18 @@
       <!-- Core Display Headline: Exact Replica & Refinement of Snapshot Design -->
       <div class="max-w-4xl mx-auto mb-6">
         <div class="select-none mb-2 text-center">
-          <h1 class="font-hero-main text-6xl sm:text-7xl md:text-8xl uppercase tracking-wider text-dokumentasi mb-1">
+          <h1 class="font-hero-main text-5xl sm:text-7xl md:text-8xl uppercase tracking-wider text-dokumentasi mb-1">
             DOKUMENTASI</h1>
           <h2
-            class="font-hero-main text-6xl sm:text-7xl md:text-8xl uppercase tracking-wider flex items-center justify-center gap-3">
-            <span class="text-fakultaria">FAKULTARIA</span> <span class="text-year">2026</span>
+            class="font-hero-main text-5xl sm:text-7xl md:text-8xl uppercase tracking-wider flex items-center justify-center gap-3">
+            <span class="text-fakultaria">FAKULTARIA</span> <span class="text-year">26</span>
           </h2>
         </div>
       </div>
       <!-- Outlined Pill Badge: FAKULTAS KOMUNIKASI DAN INFORMATIKA -->
       <div class="inline-block mb-5">
         <div
-          class="border-2 border-fki-cyan bg-transparent text-white text-xs sm:text-sm font-extrabold uppercase tracking-widest px-6 py-2 rounded-full shadow-pop-cyan">
+          class="border-2 border-fki-cyan bg-transparent text-slate-900 dark:text-white text-xs sm:text-sm font-extrabold uppercase tracking-widest px-6 py-2 rounded-full shadow-pop-cyan">
           FAKULTAS KOMUNIKASI DAN INFORMATIKA
         </div>
       </div>
@@ -188,7 +191,7 @@
         </div>
       </div>
       <!-- Clean Explanatory Subtext -->
-      <p class="max-w-2xl text-white text-sm sm:text-base md:text-lg font-normal leading-relaxed mb-9 px-2">Pusat
+      <p class="max-w-2xl text-slate-800 dark:text-white text-sm sm:text-base md:text-lg font-normal leading-relaxed mb-9 px-2">Pusat
         dokumentasi digital resmi untuk melihat kembali memori, kebersamaan, dan keseruan kegiatan <strong>FAKULTARIA
           2026</strong> Fakultas Komunikasi dan Informatika.</p>
       <!-- Action Button Group -->
@@ -200,7 +203,7 @@
           <span class="text-xl">📸</span>
         </a>
         <!-- Secondary Outline Button -->
-        <a class="inline-flex items-center gap-2 bg-transparent hover:bg-white/10 text-white font-bold text-sm sm:text-base uppercase tracking-wider px-7 py-3.5 rounded-lg border-2 border-fki-yellow shadow-pop-yellow hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+        <a class="inline-flex items-center gap-2 bg-transparent hover:bg-slate-200 dark:hover:bg-white/10 text-slate-900 dark:text-white font-bold text-sm sm:text-base uppercase tracking-wider px-7 py-3.5 rounded-lg border-2 border-fki-yellow shadow-pop-yellow hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
           href="#highlight">
           <span class="">JELAJAHI KEGIATAN</span>
           <span class="">→</span>
@@ -239,7 +242,7 @@
           class="bg-white text-fki-dark font-impact text-xs uppercase px-3 py-1.5 rounded-xl border-2 border-fki-cyan shadow-pop-cyan mb-2 transform rotate-3">
           Halo FKI Squad! 🦊⚡</div><img
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSFbe-mzmmBRfY5lAR9-A3fTdGiCgCH-IMpsDpXSaWYIcTiWphWXWx0fCW_9V55lUSnLfabDzYzhQT1BRs7HFwNzt5p48Dkf2hDigmFbs5exT9wGGvVNqx5vIUsFB9EOj1AjQyC9oy89h5NJJi1AjSY11DrIHU0pSOQVP4QEaYqEEjncGSUE9LUUAJ6LSJR6Ku7f13sVSCSZSbMrm5_w1mPGnbgf94kvqFuwAviYz1JA_vadOJISAth02sycg2NgUrpNQ"
-          alt="Maskot FKI"
+          alt="Maskot FAKULTARIA26"
           class="w-32 sm:w-36 lg:w-44 h-auto object-contain drop-shadow-[0_10px_25px_rgba(0,187,249,0.4)] transform hover:scale-105 transition-transform">
       </div>
     </section>
@@ -490,10 +493,10 @@
         <div class="flex justify-center mb-4">
           <div class="relative inline-block"><img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAihWVGLvH94lWRP9WBwwdrrEOyvRGIdVxufPxxxtjeXC9lCozeDHlkJ1zVxZZj5aRfDei4DVO0b-pRFF86Kt5_jGt7sDzqTZ3sNbWsFT31BqUNMY5lul9Qgi37-FKqtKg7o7EThNxYsP9unxvjt0vFyXHXLwNvqLgHc8pwilxAprnLWrdw4s0qeTwkdmc9t6xMj8TOYn8DV8_5M1aAzir3e54h6KoVN8zNFZvFjtkg5kHpZ7lYLkkScGobHyLe3AJQiZM"
-              alt="Maskot Resmi FAKULTARIA 25"
+              alt="Maskot Resmi FAKULTARIA 26"
               class="w-24 sm:w-28 h-auto object-contain drop-shadow-[0_8px_20px_rgba(255,183,3,0.35)] hover:scale-110 transition-transform"><span
               class="absolute -bottom-2 -right-4 bg-fki-yellow text-fki-dark font-impact text-[10px] uppercase px-2 py-0.5 rounded-full border border-fki-dark shadow-pop-dark transform -rotate-6">MASKOT
-              FKI</span></div>
+              FAKULTARIA26</span></div>
         </div>
         <div
           class="inline-block bg-fki-yellow text-fki-dark text-xs font-black uppercase px-3 py-1 rounded shadow mb-4">
@@ -528,10 +531,7 @@
             alt="Logo Fakultaria" class="h-10 w-auto object-contain mr-2.5">
           <span class="font-impact text-xl text-slate-900 dark:text-white tracking-wider">FAKULTARIA 2026</span>
         </div>
-        <p class="text-slate-600 dark:text-slate-300 max-w-md leading-relaxed text-xs">
-          Portal dokumentasi resmi perayaan milad &amp; pekan orientasi mahasiswa Fakultas Komunikasi dan Informatika
-          (FKI). Menjaga cerita, semangat, dan jejak prestasi selalu abadi.
-        </p>
+
         <p class="text-[11px] text-fki-cyan">Gedung FKI Kampus Pusat • Universitas Muhammadiyah Surakarta</p>
       </div>
       <!-- Quick Links -->
@@ -552,10 +552,10 @@
         <h4 class="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-3">Sosial Media &amp;
           Kontak</h4>
         <ul class="space-y-2">
-          <li class=""><a class="hover:text-fki-cyan flex items-center gap-2" href="#"><span class="">📷</span>
-              Instagram: @fakultaria26</a></li>
-          <li class=""><a class="hover:text-fki-cyan flex items-center gap-2" href="#"><span class="">📷</span>
-              Instagram: @fakultaria26</a></li>
+          <li class=""><a class="hover:text-fki-cyan flex items-center gap-2" href="https://www.instagram.com/fakultariafkiums?stkn=MWptN3k2NjljcWZpbg==" target="_blank" rel="noopener"><span class="">📷</span>
+              Instagram: @fakultariafkiums</a></li>
+          <li class=""><a class="hover:text-fki-cyan flex items-center gap-2" href="https://www.tiktok.com/@fkifakultariaums5?_r=1&_t=ZS-99jtq2pmRZy" target="_blank" rel="noopener"><span class="">🎵</span>
+              TikTok: @fkifakultariaums5</a></li>
           <li class=""></li>
           <li class=""></li>
         </ul>
