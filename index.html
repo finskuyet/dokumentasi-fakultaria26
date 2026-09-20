@@ -49,6 +49,12 @@
     }
   </script>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Prevent object-cover from stretching/cropping video in native fullscreen */
+    video:fullscreen { object-fit: contain !important; }
+    video:-webkit-full-screen { object-fit: contain !important; }
+    video:-ms-fullscreen { object-fit: contain !important; }
+  </style>
 </head>
 
 <body
