@@ -201,3 +201,101 @@ function verifyToken() {
     tokenError.classList.remove('hidden');
   }
 }
+
+// Recap Carousel & Auto-play Logic
+const recapCarousels = document.querySelectorAll('.recap-carousel');
+
+recapCarousels.forEach(carousel => {
+  const prevBtn = carousel.parentElement.querySelector('.recap-prev');
+  const nextBtn = carousel.parentElement.querySelector('.recap-next');
+  const videoItems = Array.from(carousel.querySelectorAll('.snap-center'));
+  
+  // Add transition classes for smooth scaling/dimming
+  videoItems.forEach(item => {
+    item.classList.add('transition-all', 'duration-500', 'ease-in-out');
+  });
+
+  function getCenterItem() {
+    const containerCenter = carousel.getBoundingClientRect().left + (carousel.clientWidth / 2);
+    let closestItem = videoItems[0];
+    let minDistance = Infinity;
+
+    videoItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      const itemCenter = rect.left + (rect.width / 2);
+      const distance = Math.abs(containerCenter - itemCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestItem = item;
+      }
+    });
+    return closestItem;
+  }
+
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      const centerItem = getCenterItem();
+      const currentIndex = videoItems.indexOf(centerItem);
+      if (currentIndex > 0) {
+        videoItems[currentIndex - 1].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      const centerItem = getCenterItem();
+      const currentIndex = videoItems.indexOf(centerItem);
+      if (currentIndex < videoItems.length - 1) {
+        videoItems[currentIndex + 1].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    });
+  }
+
+  let isCarouselInView = false;
+  
+  const carouselObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isCarouselInView = entry.isIntersecting;
+      updateActiveVideo();
+    });
+  }, { threshold: 0.3 });
+  
+  carouselObserver.observe(carousel);
+
+  function updateActiveVideo() {
+    if (!isCarouselInView) {
+      videoItems.forEach(item => {
+        const vid = item.querySelector('video');
+        if (vid) vid.pause();
+        item.classList.remove('scale-105', 'opacity-100');
+        item.classList.add('opacity-50', 'scale-90');
+      });
+      return;
+    }
+
+    const centerItem = getCenterItem();
+    
+    videoItems.forEach(item => {
+      const vid = item.querySelector('video');
+      if (item === centerItem) {
+        item.classList.add('scale-105', 'opacity-100');
+        item.classList.remove('opacity-50', 'scale-90');
+        if (vid) vid.play().catch(e => console.log('Autoplay prevented:', e));
+      } else {
+        item.classList.remove('scale-105', 'opacity-100');
+        item.classList.add('opacity-50', 'scale-90');
+        if (vid) vid.pause();
+      }
+    });
+  }
+
+  let scrollTimeout;
+  carousel.addEventListener('scroll', () => {
+    if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+    scrollTimeout = requestAnimationFrame(() => {
+      updateActiveVideo();
+    });
+  });
+  
+  // Initial update
+  setTimeout(updateActiveVideo, 300);
+});
